@@ -16,6 +16,21 @@
                                 <label for="name">Username</label>
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" required>
                             </div>
+                            <div class="form-group">
+    <label for="email">Email</label>
+    <input id="email" type="email" class="form-control" name="email" value="{{ old('email', $user->email) }}" required>
+</div>
+
+<div class="form-group">
+    <label for="password">Password</label>
+    <input id="password" type="password" class="form-control" name="password">
+</div>
+
+<div class="form-group">
+    <label for="password_confirmation">Confirm Password</label>
+    <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">
+</div>
+
 
                             <div class="form-group">
                                 <label for="birthday">Birthday</label>
