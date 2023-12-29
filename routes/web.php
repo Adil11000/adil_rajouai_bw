@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
 // In web.php
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
 Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
-Route::patch('/profile/update', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+Route::put('/profile/update/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
 
 

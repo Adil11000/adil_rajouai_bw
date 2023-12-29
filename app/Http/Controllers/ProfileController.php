@@ -29,43 +29,24 @@ public function show()
 public function edit()
 {
     $user = auth()->user();
-    return view('profile.edit', compact('user'));
+    return view('profile.edit', compact('user')); 
 }
 
-public function update(Request $request, User $user)
+public function update(Request $request)
 {
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email,' . $user->id,
-        'password' => 'nullable|string|min:8|confirmed',
-        'birthday' => 'nullable|date',
-        'biography' => 'nullable|string',
-        'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    $newAvatar=$request->name.'.'.$request->image->extension();
+    $request->image->move(public_path('images/avatar'),$newAvatar);
+
+    $user = auth()->user();
+   $id=$user->id;
+    $user= (new \App\Models\User)::where('id',$id)->update([
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'birthday' => $request->input('birthday'),
+        'about' => $request->input('about'),
+
     ]);
+    return redirect()->route('profile.show')->with('status', 'Profile updated successfully');
 
-    $data = [
-        'name' => $request->name,
-        'email' => $request->email,
-        'birthday' => $request->birthday,
-        'biography' => $request->biography,
-    ];
-
-    // Update het wachtwoord alleen als het is ingevuld
-    if ($request->filled('password')) {
-        $data['password'] = bcrypt($request->password);
-    }
-
-    // Update de gebruikersgegevens
-    $user->update($data);
-
-    // Verwerk de avatar-indiening (als er een is)
-    if ($request->hasFile('avatar')) {
-        $avatarPath = $request->file('avatar')->store('avatars', 'public');
-        $user->avatar = $avatarPath;
-        $user->save();
-    }
-
-    return redirect()->route('profile.show')->with('success', 'Profile updated successfully');
 }
 }
-
