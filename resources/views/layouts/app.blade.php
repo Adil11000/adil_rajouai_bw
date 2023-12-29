@@ -7,13 +7,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Aquaboat') }}</title>
+    <title>{{ config('app.name', 'Aqua') }}</title>
 
     <!-- Fonts -->
-   
-
-    <link href="/styles.css" rel="stylesheet" />
-        <link href="/index.html" rel="stylesheet" />
+    <link rel="dns-prefetch" href="//fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -38,6 +36,17 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
+
+                        <li class="nav-item">
+                                 <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+                                 </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('contact') }}">{{ __('Contact') }}</a>
+                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
+                                </li>
+
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -56,6 +65,7 @@
                                     {{ Auth::user()->name }}
                                 </a>
                                 
+                              
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
@@ -64,6 +74,8 @@
                                 </a>
                         
                                 <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Edit Profile') }}</a>
+
+                               
 
                                 
                                 

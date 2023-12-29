@@ -36,4 +36,10 @@ Route::put('/profile/update/{id}', [App\Http\Controllers\ProfileController::clas
 
 
 
+// In routes/web.php
 
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AboutController;
+
+Route::view('/contact', 'contact')->name('contact'); // Hier 'contact' is de view-naam
+Route::view('/about', 'about')->name('about'); // Hier 'about' is de view-naam
