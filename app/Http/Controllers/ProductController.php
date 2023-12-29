@@ -7,13 +7,13 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-
     public function index()
     {
         $products = Product::all(); // Haal alle producten op uit de database
 
         return view('products.index', ['products' => $products]);
     }
+
     public function create()
     {
         return view('products.create');

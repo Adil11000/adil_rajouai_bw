@@ -37,18 +37,8 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
 
-                        <li class="nav-item">
-                                 <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('contact') }}">{{ __('Contact') }}</a>
-                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link" href="{{ route('products.index') }}">{{ __('Products') }}</a>
-                                    </li>
+                
+
 
                         @guest
                             @if (Route::has('login'))
@@ -63,6 +53,21 @@
                                 </li>
                             @endif
                         @else
+                        <li class="nav-item">
+                                 <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
+                                 </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('contact') }}">{{ __('Contact') }}</a>
+                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ route('products.index') }}">{{ __('Sell') }}</a>
+                                    </li>
+                                <li class="nav-item">
+                                     <a class="nav-link" href="{{ route('my-cart') }}">My cart</a>
+                                    </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

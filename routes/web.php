@@ -45,10 +45,19 @@ Route::view('/contact', 'contact')->name('contact');
 Route::view('/about', 'about')->name('about'); 
 
 
-// In routes/web.php
 
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
 Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
 Route::post('/products/store', [App\Http\Controllers\ProductController::class, 'store'])->name('products.store');
+
+
+
+Route::post('/add-to-cart/{product}', [App\Http\Controllers\CartController::class, 'addToCart'])->name('add-to-cart');
+Route::post('/cart/add/{productId}', 'CartController@addToCart')->name('cart.add');
+
+
+
+Route::get('/my-cart', [App\Http\Controllers\CartController::class, 'showCart'])->name('my-cart');
+
 
 
