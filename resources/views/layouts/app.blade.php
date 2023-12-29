@@ -10,8 +10,10 @@
     <title>{{ config('app.name', 'Aquaboat') }}</title>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+   
+
+    <link href="/styles.css" rel="stylesheet" />
+        <link href="/index.html" rel="stylesheet" />
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
