@@ -46,6 +46,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
                                 </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ route('products.index') }}">{{ __('Products') }}</a>
+                                    </li>
 
                         @guest
                             @if (Route::has('login'))

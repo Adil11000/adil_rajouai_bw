@@ -41,5 +41,14 @@ Route::put('/profile/update/{id}', [App\Http\Controllers\ProfileController::clas
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AboutController;
 
-Route::view('/contact', 'contact')->name('contact'); // Hier 'contact' is de view-naam
-Route::view('/about', 'about')->name('about'); // Hier 'about' is de view-naam
+Route::view('/contact', 'contact')->name('contact'); 
+Route::view('/about', 'about')->name('about'); 
+
+
+// In routes/web.php
+
+Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
+Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
+Route::post('/products/store', [App\Http\Controllers\ProductController::class, 'store'])->name('products.store');
+
+
