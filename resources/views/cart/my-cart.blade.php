@@ -1,31 +1,28 @@
-<!-- In resources/views/cart/my-cart.blade.php -->
-@extends('layouts.app') <!-- Je moet mogelijk de layoutnaam aanpassen op basis van je configuratie -->
+<!-- resources/views/cart/my-cart.blade.php -->
+
+@extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h2>My cart</h2>
 
-        @if(count($cart) > 0)
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Prijs</th>
-                        <!-- Voeg andere kolommen toe indien nodig -->
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($cart as $item)
-                        <tr>
-                            <td>{{ $item['name'] }}</td>
-                            <td>{{ $item['price'] }}</td>
-                            <!-- Voeg andere kolommen toe indien nodig -->
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @else
-            <p>Je winkelwagen is leeg.</p>
-        @endif
-    </div>
+<div class="container">
+    <h1>My favs ads</h1>
+
+    @forelse($likedProducts as $product)
+        <div class="card mb-4"> <!-- Voeg de mb-4 klasse toe voor wat onderlinge ruimte -->
+            <div class="card-header">
+                <h5 class="card-title">{{ $product->name }}</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ $product->description }}</p>
+                <p class="card-text">Price: ${{ $product->price }}</p>
+                @if ($product->image)
+                    <img src="{{ asset('images/products/' . $product->image) }}" class="img-fluid" alt="Product Image">
+                @endif
+            </div>
+        </div>
+    @empty
+        <p>No liked products yet.</p>
+    @endforelse
+</div>
+
 @endsection

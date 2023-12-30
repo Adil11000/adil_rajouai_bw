@@ -4,7 +4,7 @@
 <div class="container h-100 mt-5">
   <div class="row h-100 justify-content-center align-items-center">
     <div class="col-10 col-md-8 col-lg-6">
-      <h3>Update Product</h3>
+      <h3>Update ad</h3>
       <form action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -24,7 +24,7 @@
           <label for="image">Image</label>
           <input type="file" class="form-control-file" id="image" name="image">
         </div>
-        <button type="submit" class="btn mt-3 btn-primary">Update Product</button>
+        <button type="submit" class="btn mt-3 btn-primary">Update ad</button>
       </form>
     </div>
   </div>

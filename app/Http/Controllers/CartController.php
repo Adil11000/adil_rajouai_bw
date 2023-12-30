@@ -24,8 +24,14 @@ class CartController extends Controller
 
     public function showCart()
 {
-    $cart = Cart::all(); // Of gebruik de juiste methode om je winkelwagenitems op te halen
-    return view('cart.my-cart', ['cart' => $cart ?? []]);
+    $user = auth()->user();
+
+    // Haal alle gelikete producten van de huidige gebruiker op
+    $likedProducts = $user->likes->map(function ($like) {
+        return $like->product;
+    });
+
+    return view('cart.my-cart', compact('likedProducts'));
 }
 }
 

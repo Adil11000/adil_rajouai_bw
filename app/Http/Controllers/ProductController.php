@@ -108,7 +108,11 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+
+        $this->authorize('delete', $product);
         $product = Product::find($id);
+        $product->likes()->delete();
+
 
         // Delete the product's image if it exists
         if ($product->image) {
@@ -124,7 +128,7 @@ class ProductController extends Controller
             ->with('success', 'Product deleted successfully');
     }
 
-    // Other route functions...
+
 
     /**
      * Show the form for creating a new product.
@@ -133,11 +137,13 @@ class ProductController extends Controller
      */
     public function create()
     {
+        
         return view('products.create');
     }
 
     public function edit($id)
   {
+    $this->authorize('edit', $product);
     $product = Product::find($id);
     return view('products.edit', compact('product'));
   }

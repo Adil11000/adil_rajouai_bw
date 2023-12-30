@@ -12,13 +12,21 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    // In de User.php
+
+public function is_admin()
+{
+    return $this->role === 'admin';
+}
+
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     
-    protected $fillable = ['name', 'email','password', 'birthday', 'biography', 'avatar'];
+    protected $fillable = ['name', 'email','password', 'birthday', 'biography', 'avatar', 'is_admin'];
 
 
     /**
@@ -40,4 +48,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function likes()
+{
+    return $this->hasMany(Like::class);
+}
 }

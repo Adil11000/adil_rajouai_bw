@@ -16,4 +16,12 @@ class Product extends Model
         'image',
         // Add other fields as needed
     ];
+
+    protected $dates = ['created_at'];
+
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }

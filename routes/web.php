@@ -108,3 +108,6 @@ Route::get('/posts/{post}/edit', App\Http\Controllers\PostController::class .'@e
 Route::put('/posts/{post}', App\Http\Controllers\PostController::class .'@update')->name('posts.update');
 // deletes a post
 Route::delete('/posts/{post}', App\Http\Controllers\PostController::class .'@destroy')->name('posts.destroy');
+
+// In routes/web.php
+Route::post('/products/{product}/like', [App\Http\Controllers\LikeController::class, 'store'])->name('products.like');

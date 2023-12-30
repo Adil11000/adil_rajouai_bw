@@ -4,7 +4,7 @@
 <div class="container h-100 mt-5">
   <div class="row h-100 justify-content-center align-items-center">
     <div class="col-10 col-md-8 col-lg-6">
-      <h3>Add a Product</h3>
+      <h3>Add a ad</h3>
       <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
@@ -20,11 +20,11 @@
           <input type="number" class="form-control" id="price" name="price" required>
         </div>
         <div class="form-group">
-          <label for="image">Image</label>
+          <label for="image"></label>
           <input type="file" class="form-control-file" id="image" name="image">
         </div>
         <br>
-        <button type="submit" class="btn btn-primary">Create Product</button>
+        <button type="submit" class="btn btn-primary">Create ad</button>
       </form>
     </div>
   </div>
