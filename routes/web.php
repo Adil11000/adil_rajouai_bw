@@ -46,11 +46,6 @@ Route::view('/about', 'about')->name('about');
 
 
 
-Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products.index');
-Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
-Route::post('/products/store', [App\Http\Controllers\ProductController::class, 'store'])->name('products.store');
-
-
 
 Route::post('/add-to-cart/{product}', [App\Http\Controllers\CartController::class, 'addToCart'])->name('add-to-cart');
 Route::post('/cart/add/{productId}', 'CartController@addToCart')->name('cart.add');
@@ -74,3 +69,42 @@ Route::put('/faq/{id}', 'FAQController@update')->name('faq.update');
 Route::delete('/faq/{id}', 'FAQController@destroy')->name('faq.destroy');
 
 
+
+
+
+// Returns the home page with all products
+Route::get('/products', 'App\Http\Controllers\ProductController@index')->name('products.index');
+
+// Returns the form for adding a product
+Route::get('/products/create', 'App\Http\Controllers\ProductController@create')->name('products.create');
+
+// Adds a product to the database
+Route::post('/products', 'App\Http\Controllers\ProductController@store')->name('products.store');
+
+// Returns a page that shows a full product
+Route::get('/products/{product}', 'App\Http\Controllers\ProductController@show')->name('products.show');
+
+// Returns the form for editing a product
+Route::get('/products/{product}/edit',  App\Http\Controllers\ProductController::class .'@edit')->name('products.edit');
+
+// Updates a product
+Route::put('/products/{product}', 'App\Http\Controllers\ProductController@update')->name('products.update');
+
+// Deletes a product
+Route::delete('/products/{product}', 'App\Http\Controllers\ProductController@destroy')->name('products.destroy');
+
+
+// returns the home page with all posts
+Route::get('/', App\Http\Controllers\PostController::class .'@index')->name('posts.index');
+// returns the form for adding a post
+Route::get('/posts/create', App\Http\Controllers\PostController::class . '@create')->name('posts.create');
+// adds a post to the database
+Route::post('/posts', App\Http\Controllers\PostController::class .'@store')->name('posts.store');
+// returns a page that shows a full post
+Route::get('/posts/{post}', App\Http\Controllers\PostController::class .'@show')->name('posts.show');
+// returns the form for editing a post
+Route::get('/posts/{post}/edit', App\Http\Controllers\PostController::class .'@edit')->name('posts.edit');
+// updates a post
+Route::put('/posts/{post}', App\Http\Controllers\PostController::class .'@update')->name('posts.update');
+// deletes a post
+Route::delete('/posts/{post}', App\Http\Controllers\PostController::class .'@destroy')->name('posts.destroy');

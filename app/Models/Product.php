@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    use HasFactory;
 
-    protected $fillable = ['name', 'description', 'price'];
-    // Je kunt ook extra relaties en functies hier toevoegen.
-
-
-
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'image',
+        // Add other fields as needed
+    ];
 }

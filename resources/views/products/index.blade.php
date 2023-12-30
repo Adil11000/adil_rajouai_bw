@@ -1,30 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h2>Sell a new product</h2>
-        <form method="POST" action="{{ route('products.store') }}">
-            @csrf
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+      <div class="container-fluid">
+        <a class="navbar-brand h1" href={{ route('products.index') }}>Products</a>
+        <div class="justify-end">
+          <div class="col">
+            <a class="btn btn-sm btn-success" href={{ route('products.create') }}>Add Product</a>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-            <!-- Product name -->
-            <div class="mb-3">
-                <label for="product_name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="product_name" name="product_name" required>
+    <div class="container mt-5">
+      <div class="row">
+        @foreach ($products as $product)
+          <div class="col-sm">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">{{ $product->name }}</h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text">{{ $product->description }}</p>
+                <p class="card-text">Price: ${{ $product->price }}</p>
+                @if ($product->image)
+                  <img src="{{ asset('images/products/' . $product->image) }}" class="img-fluid" alt="Product Image">
+                @endif
+              </div>
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-sm">
+                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                  </div>
+                  <div class="col-sm">
+                    <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <!-- Product price -->
-            <div class="mb-3">
-                <label for="product_price" class="form-label">Price</label>
-                <input type="text" class="form-control" id="product_price" name="product_price" required>
-            </div>
-
-            <!-- Product image URL -->
-            <div class="mb-3">
-                <label for="product_image" class="form-label">Image URL</label>
-                <input type="text" class="form-control" id="product_image" name="product_image" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Create Product</button>
-        </form>
+          </div>
+        @endforeach
+      </div>
     </div>
+  </body>
+</html>
 @endsection
+
