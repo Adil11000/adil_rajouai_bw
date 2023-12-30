@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Aqua') }}</title>
+    <title>{{ config('app.name', 'StuJob') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -56,19 +56,21 @@
                         <li class="nav-item">
                                  <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
                                  </li>
-                                 <li class="nav-item">
+                                
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ route('products.index') }}">{{ __('Job ads') }}</a>
+                                    </li>
+                                <li class="nav-item">
+                                     <a class="nav-link" href="{{ route('my-cart') }}">My favs</a>
+                                    </li>
+
+                                    <li class="nav-item">
                                     <a class="nav-link" href="{{ route('contact') }}">{{ __('Contact') }}</a>
                                  </li>
                                  <li class="nav-item">
                                     <a class="nav-link" href="{{ route('faq.index') }}">{{ __('Faq') }}</a>
                                 </li>
 
-                                <li class="nav-item">
-                                <a class="nav-link" href="{{ route('products.index') }}">{{ __('Sell') }}</a>
-                                    </li>
-                                <li class="nav-item">
-                                     <a class="nav-link" href="{{ route('my-cart') }}">My cart</a>
-                                    </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
