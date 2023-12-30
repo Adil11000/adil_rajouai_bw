@@ -59,5 +59,18 @@ Route::post('/cart/add/{productId}', 'CartController@addToCart')->name('cart.add
 
 Route::get('/my-cart', [App\Http\Controllers\CartController::class, 'showCart'])->name('my-cart');
 
+Route::get('/faq', 'App\Http\Controllers\FAQController@index')->name('faq.index');
+
+Route::get('/faq/create', 'FAQController@create')->name('faq.create');
+
+Route::post('/faq', 'FAQController@store')->name('faq.store');
+
+Route::get('/faq/{id}', 'FAQController@show')->name('faq.show');
+
+Route::get('/faq/{id}/edit', 'FAQController@edit')->name('faq.edit');
+
+Route::put('/faq/{id}', 'FAQController@update')->name('faq.update');
+
+Route::delete('/faq/{id}', 'FAQController@destroy')->name('faq.destroy');
 
 

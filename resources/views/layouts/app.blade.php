@@ -59,9 +59,10 @@
                                  <li class="nav-item">
                                     <a class="nav-link" href="{{ route('contact') }}">{{ __('Contact') }}</a>
                                  </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('faq.index') }}">{{ __('Faq') }}</a>
                                 </li>
+
                                 <li class="nav-item">
                                 <a class="nav-link" href="{{ route('products.index') }}">{{ __('Sell') }}</a>
                                     </li>
