@@ -27,15 +27,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/users/{user}/promote', [App\Http\Controllers\HomeController::class, 'promote'])->name('admin.users.promote');
 });
 
-
-
-
-
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
 Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
 Route::get('/profile/edit/{user}', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
 Route::post('/profile/edit/{user}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
-
 
 
 use App\Http\Controllers\ContactController;
@@ -44,29 +39,22 @@ use App\Http\Controllers\AboutController;
 Route::view('/contact', 'contact')->name('contact'); 
 Route::view('/about', 'about')->name('about'); 
 
-
-
-
 Route::post('/add-to-cart/{product}', [App\Http\Controllers\CartController::class, 'addToCart'])->name('add-to-cart');
 Route::post('/cart/add/{productId}', 'CartController@addToCart')->name('cart.add');
-
-
-
 Route::get('/my-cart', [App\Http\Controllers\CartController::class, 'showCart'])->name('my-cart');
 
-Route::get('/faq', 'App\Http\Controllers\FAQController@index')->name('faq.index');
 
-Route::get('/faq/create', 'FAQController@create')->name('faq.create');
 
-Route::post('/faq', 'FAQController@store')->name('faq.store');
 
-Route::get('/faq/{id}', 'FAQController@show')->name('faq.show');
 
-Route::get('/faq/{id}/edit', 'FAQController@edit')->name('faq.edit');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('faq-categories', \App\Http\Controllers\FaqCategoryController::class);
+    Route::resource('faq-questions', \App\Http\Controllers\FaqQuestionController::class);
+    Route::get('faq', [\App\Http\Controllers\FaqCategoryController::class, 'index'])->name('faq.index');
+    // Voeg eventuele andere routes toe die je nodig hebt
+});
 
-Route::put('/faq/{id}', 'FAQController@update')->name('faq.update');
 
-Route::delete('/faq/{id}', 'FAQController@destroy')->name('faq.destroy');
 
 
 

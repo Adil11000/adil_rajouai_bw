@@ -22,6 +22,8 @@
                 <div class="col-sm mb-4">
                     <div class="card">
                         <div class="card-body">
+                        <p class="card-text">{{ $product->name }}</p>
+
                             <p class="card-text">{{ $product->description }}</p>
                             <p class="card-text">Price: ${{ $product->price }}</p>
                             <p class="card-text">Published on: {{ $product->created_at->format('Y-m-d H:i:s') }}</p>

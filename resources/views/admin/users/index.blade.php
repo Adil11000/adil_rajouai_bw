@@ -2,6 +2,7 @@
 
 @section('content')
 
+<h1>promote existing users</h1>
 
 @foreach ($users as $user)
     <div class="card">

@@ -137,13 +137,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        
         return view('products.create');
     }
 
     public function edit($id)
   {
-    $this->authorize('edit', $product);
+    
     $product = Product::find($id);
     return view('products.edit', compact('product'));
   }

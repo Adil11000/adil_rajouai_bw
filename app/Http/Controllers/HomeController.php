@@ -51,6 +51,6 @@ class HomeController extends Controller
             // Voer de logica uit om een gebruiker te bevorderen tot admin
             $userToPromote->update(['is_admin' => 1]);
     
-            return redirect()->route('admin.users.index', compact('users'))->with('success', 'User successfully promoted to admin.');
+            return redirect()->route('home')->with('success', 'User successfully promoted to admin.');
         }
     }
