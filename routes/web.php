@@ -17,26 +17,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-// Dashboard
-Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'dashboard'])->name('dashboard');
-// web.php
-
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [UserController::class, 'dashboard']);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::post('/admin/users/{user}/promote', [App\Http\Controllers\HomeController::class, 'promote'])->name('admin.users.promote');
 });
 
-// In web.php
+
+
+
+
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
 Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
-Route::put('/profile/update/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+Route::get('/profile/edit/{user}', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
+Route::post('/profile/edit/{user}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 
 
-
-// In routes/web.php
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AboutController;
@@ -109,5 +109,10 @@ Route::put('/posts/{post}', App\Http\Controllers\PostController::class .'@update
 // deletes a post
 Route::delete('/posts/{post}', App\Http\Controllers\PostController::class .'@destroy')->name('posts.destroy');
 
-// In routes/web.php
 Route::post('/products/{product}/like', [App\Http\Controllers\LikeController::class, 'store'])->name('products.like');
+
+
+
+Route::post('/contact/submit', [App\Http\Controllers\ContactController::class, 'submitForm'])->name('contact.submit');
+Route::get('/contact', [App\Http\Controllers\ContactController::class, 'showForm'])->name('contact.form')->middleware('auth');
+

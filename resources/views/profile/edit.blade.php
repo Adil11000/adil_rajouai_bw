@@ -8,8 +8,7 @@
                     <div class="card-header">Edit Profile</div>
 
                     <div class="card-body">
-                        
-                        <form action="{{ route('profile.edit', $user->id) }}" method="POST" ></a>
+                        <form action="{{ route('profile.update', $user->id) }}" method="POST" enctype="multipart/form-data">
 
                             @csrf
 
@@ -35,12 +34,8 @@
 
                             <div>
                                 <label for="avatar">Avatar</label>
-                                <input id="avatar" type="file" class="form-control" name="avatar" value="{{ $user->avatar }}">
+                                <input id="avatar" type="file" class="form-control" name="avatar">
                             </div>
-
-                           
-
-                            
 
                             <button type="submit" class="btn btn-primary">Save Changes</button>
                         </form>

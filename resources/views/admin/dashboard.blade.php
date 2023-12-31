@@ -19,5 +19,15 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <h2>Dashboard</h2>
+
+        <!-- Andere dashboard-inhoud hier -->
+
+        <div class="mt-4">
+            <h3>All Users</h3>
+            
+        </div>
+    </div>
 </div>
 @endsection

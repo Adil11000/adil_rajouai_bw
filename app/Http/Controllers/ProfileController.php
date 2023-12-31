@@ -22,47 +22,40 @@ class ProfileController extends Controller
 
 
 
-public function edit()
-{
-    $user = auth()->user();
-    return view('profile.edit', compact('user')); 
-}
-
-public function update(Request $request)
-{
-    $request->validate([
-        'name' => 'required|max:255',
-        'email' => 'required|email|max:255',
-        'birthday' => 'date',
-        'biography' => 'nullable|string',
-        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image upload
-    ]);
-
-    $user = auth()->user();
-    $id = $user->id;
-
-    $userData = [
-        'name' => $request->input('name'),
-        'email' => $request->input('email'),
-        'birthday' => $request->input('birthday'),
-        'biography' => $request->input('biography'),
-    ];
-
-    // Check if an image is uploaded
-    if ($request->hasFile('image')) {
-        $newAvatar = $request->name . '.' . $request->image->extension();
-        $request->image->move(public_path('images/avatar'), $newAvatar);
-
-        // Add avatar to user data
-        $userData['avatar'] = $newAvatar;
+    public function edit(User $user)
+    {
+        return view('profile.edit', compact('user'));
     }
 
-    // Update user data
-    $user->update($userData);
+    public function update(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'birthday' => 'nullable|date',
+            'about' => 'nullable|string',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    return redirect()->route('profile.show')->with('status', 'Profile updated successfully');
-}
-public function show()
+        // Update gebruiker
+        $user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'birthday' => $request->input('birthday'),
+            'biography' => $request->input('about'),
+        ]);
+
+        // Update avatar als er een is geüpload
+        if ($request->hasFile('avatar')) {
+            $newAvatar = $request->name . '.' . $request->avatar->extension();
+            $request->avatar->move(public_path('avatars'), $newAvatar);
+
+            $user->update(['avatar' => $newAvatar]);
+        }
+
+        return redirect()->route('profile.edit', $user->id)->with('success', 'Profile updated successfully.');
+    }
+    public function show()
 {
     $user = auth()->user();
         return view('profile.show', compact('user'));

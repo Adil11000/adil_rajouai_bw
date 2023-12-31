@@ -65,7 +65,7 @@
                                     </li>
 
                                     <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('contact') }}">{{ __('Contact') }}</a>
+                                    <a class="nav-link" href="{{ route('contact.form') }}">{{ __('Contact') }}</a>
                                  </li>
                                  <li class="nav-item">
                                     <a class="nav-link" href="{{ route('faq.index') }}">{{ __('Faq') }}</a>
@@ -84,7 +84,9 @@
 
                                 </a>
                         
-                                <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Edit Profile') }}</a>
+<a class="dropdown-item" href="{{ route('profile.edit', auth()->user()->id) }}">
+    {{ __('Edit Profile') }}
+</a>
 
                                
 
