@@ -106,11 +106,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($product)
     {
+        $product = Product::find($product);
 
         $this->authorize('delete', $product);
-        $product = Product::find($id);
         $product->likes()->delete();
 
 

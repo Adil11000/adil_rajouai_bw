@@ -20,8 +20,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Aquaboat') }}
+            <a class="navbar-brand" href="http://127.0.0.1:8000"> StuJob </a>             
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -71,6 +70,10 @@
                                     <a class="nav-link" href="{{ route('faq.index') }}">{{ __('Faq') }}</a>
                                 </li>
 
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ route('about.index') }}">About</a>
+                                </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -83,15 +86,8 @@
                                 <a class="dropdown-item" href="{{ route('profile.show') }}"> {{ __('Profile') }}
 
                                 </a>
+                                <a class="dropdown-item" href="{{ route('profile.edit', auth()->user()->id) }}">{{ __('Edit Profile') }}</a>
                         
-<a class="dropdown-item" href="{{ route('profile.edit', auth()->user()->id) }}">
-    {{ __('Edit Profile') }}
-</a>
-
-                               
-
-                                
-                                
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

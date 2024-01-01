@@ -2,6 +2,7 @@
 
 @section('content')
 <body>
+@auth
   
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -60,6 +61,7 @@
             @endforeach
         </div>
     </div>
+    @endauth
 </body>
 </html>
 @endsection

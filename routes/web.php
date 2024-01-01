@@ -51,13 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('faq-categories', \App\Http\Controllers\FaqCategoryController::class);
     Route::resource('faq-questions', \App\Http\Controllers\FaqQuestionController::class);
     Route::get('faq', [\App\Http\Controllers\FaqCategoryController::class, 'index'])->name('faq.index');
-    // Voeg eventuele andere routes toe die je nodig hebt
 });
-
-
-
-
-
 
 
 // Returns the home page with all products
@@ -104,3 +98,6 @@ Route::post('/products/{product}/like', [App\Http\Controllers\LikeController::cl
 Route::post('/contact/submit', [App\Http\Controllers\ContactController::class, 'submitForm'])->name('contact.submit');
 Route::get('/contact', [App\Http\Controllers\ContactController::class, 'showForm'])->name('contact.form')->middleware('auth');
 
+
+
+Route::get('/about', [App\Http\Controllers\AboutController::class, 'index'])->name('about.index');

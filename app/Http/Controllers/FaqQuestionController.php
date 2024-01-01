@@ -19,9 +19,10 @@ class FaqQuestionController extends Controller
 
 public function index()
 {
-    $questions = FaqQuestion::with('category')->get();
+    $questions = FaqQuestion::all();
     return view('faq.index', compact('questions'));
 }
+
 
 
     public function create()

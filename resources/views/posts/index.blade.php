@@ -49,5 +49,4 @@
   @endauth
 
 </body>
-</html>
 @endsection
