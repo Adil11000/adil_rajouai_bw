@@ -13,7 +13,7 @@ class ProductController extends Controller
     $products = Product::all();
 
     foreach ($products as $product) {
-        $product->image = asset('images/' . $product->image);
+        $product->image = asset('storage/images/' . $product->image);
     }
 
     return view('products.index', compact('products'));

@@ -37,7 +37,11 @@
             <li>
                 <a href="https://www.youtube.com/watch?v=hFm4xe0ej_I&ab_channel=LaravelJutsu" target="_blank">Middleware</a>
             </li>
+            <li>
+                <a href="https://github.com/Adil11000/adil_rajouai_bw.git" target="_blank">Github</a>
+            </li>
         </ul>
+
         @endauth
     </div>
 @endsection
