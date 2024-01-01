@@ -7,16 +7,20 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
-    {
-        $products = Product::all();
-        return view('products.index', compact('products'));
+{
+    $products = Product::all();
+
+    foreach ($products as $product) {
+        $product->image = asset('images/' . $product->image);
     }
+
+    return view('products.index', compact('products'));
+}
+
+    
+    
 
     /**
      * Store a newly created resource in storage.
@@ -42,7 +46,7 @@ class ProductController extends Controller
         // Check if an image is uploaded
         if ($request->hasFile('image')) {
             $newImage = $request->name . '.' . $request->image->extension();
-            $request->image->move(public_path('images/products'), $newImage);
+            $request->image->move(public_path('images'), $newImage);
 
             // Add image to product data
             $productData['image'] = $newImage;
@@ -61,44 +65,33 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required|max:255',
-            'description' => 'required',
-            'price' => 'required|numeric',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image upload
-        ]);
+{
+    $request->validate([
+        'name' => 'required|max:255',
+        'description' => 'required',
+        'price' => 'required|numeric',
+        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image upload
+    ]);
 
-        $product = Product::find($id);
+    $product = Product::find($id);
 
-        $productData = [
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-            'price' => $request->input('price'),
-        ];
+    $productData = [
+        'name' => $request->input('name'),
+        'description' => $request->input('description'),
+        'price' => $request->input('price'),
+    ];
 
-        // Check if an image is uploaded
-        if ($request->hasFile('image')) {
-            $newImage = $request->name . '.' . $request->image->extension();
-            $request->image->move(public_path('images/products'), $newImage);
+    // Update avatar als er een is geüpload
+    if ($request->hasFile('image')) {
 
-            // Add new image to product data
-            $productData['image'] = $newImage;
-
-            // Delete old image if it exists
-            if ($product->image) {
-                $oldImagePath = public_path('images/products') . '/' . $product->image;
-                if (file_exists($oldImagePath)) {
-                    unlink($oldImagePath);
-                }
-            }
-        }
-
-        $product->update($productData);
-
-        return redirect()->route('products.index')
-            ->with('success', 'Product updated successfully.');
+        $newImage = $request->file('image')->store('public/images');
+        $productData['image'] = basename($newImage);
     }
+
+    $product->update($productData);
+
+    return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+}
 
     /**
      * Remove the specified resource from storage.
@@ -116,7 +109,7 @@ class ProductController extends Controller
 
         // Delete the product's image if it exists
         if ($product->image) {
-            $imagePath = public_path('images/products') . '/' . $product->image;
+            $imagePath = public_path('images') . '/' . $product->image;
             if (file_exists($imagePath)) {
                 unlink($imagePath);
             }

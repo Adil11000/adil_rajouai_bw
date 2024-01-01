@@ -52,4 +52,8 @@ public function is_admin()
 {
     return $this->hasMany(Like::class);
 }
+public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
 }

@@ -43,21 +43,24 @@ class ProfileController extends Controller
             'email' => $request->input('email'),
             'birthday' => $request->input('birthday'),
             'biography' => $request->input('about'),
+            'avatar' => $request->input('avatar'),
         ]);
 
         // Update avatar als er een is geüpload
-        if ($request->hasFile('avatar')) {
-            $newAvatar = $request->name . '.' . $request->avatar->extension();
-            $request->avatar->move(public_path('avatars'), $newAvatar);
+    if ($request->hasFile('avatar')) {
+        // Verwijder oude avatar indien aanwezig
+        
 
-            $user->update(['avatar' => $newAvatar]);
-        }
-
+        $newAvatarPath = $request->file('avatar')->store('public/images');
+        $user->update(['avatar' => str_replace('public/images', '', $newAvatarPath)]);
+    }
         return redirect()->route('profile.edit', $user->id)->with('success', 'Profile updated successfully.');
     }
     public function show()
 {
     $user = auth()->user();
+    $user->avatar = asset('storage/images' . $user->avatar); // Volledige URL van de avatar
+
         return view('profile.show', compact('user'));
 }
 
