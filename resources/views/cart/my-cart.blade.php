@@ -9,9 +9,7 @@
     @forelse($likedProducts as $product)
         <div class="card mb-4"> 
             <div class="card-header">
-            @if ($product->image)
-                    <img src="{{ asset('public/images/' . $product->image) }}" class="img-fluid" alt="Product Image">
-                @endif
+           
                 <h5 class="card-title">{{ $product->name }}</h5>
             </div>
             <div class="card-body">

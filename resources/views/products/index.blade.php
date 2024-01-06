@@ -24,7 +24,8 @@
                     <div class="card">
                       
                         <div class="card-body">
-                        <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}">
+
+                        <img src="{{ asset($product->image) }}" alt="{{ $product->name }}'s Image">
                             <p class="card-text">{{ $product->name }}</p>
                             <p class="card-text">{{ $product->description }}</p>
                             <p class="card-text">Price: ${{ $product->price }}</p>

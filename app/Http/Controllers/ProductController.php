@@ -14,10 +14,14 @@ class ProductController extends Controller
 
     foreach ($products as $product) {
         $product->image = asset('storage/images/' . $product->image);
+
     }
+    
 
     return view('products.index', compact('products'));
 }
+
+
 
     
     

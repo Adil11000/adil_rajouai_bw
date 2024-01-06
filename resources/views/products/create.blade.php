@@ -21,9 +21,10 @@
           <input type="number" class="form-control" id="price" name="price" required>
         </div>
         <div class="form-group">
-          <label for="image"></label>
-          <input type="file" class="form-control-file" id="image" name="image">
+          <label for="image">Image</label>
+          <input id="image" type="file" class="form-control-file" name="image">
         </div>
+    
         <br>
         <button type="submit" class="btn btn-primary">Create ad</button>
       </form>

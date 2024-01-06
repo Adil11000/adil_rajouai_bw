@@ -1,0 +1,6 @@
+.image-size {
+    width: 30px; /* Pas dit aan naar de gewenste breedte */
+    height: 30px; /* Pas dit aan naar de gewenste hoogte */
+    object-fit: cover;
+    border-radius: 50%; /* Maak het rond voor een avatar-achtig effect */
+}

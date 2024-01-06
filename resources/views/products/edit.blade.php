@@ -23,7 +23,7 @@
         </div>
         <div class="form-group">
           <label for="image">Image</label>
-          <input type="file" class="form-control-file" id="image" name="image">
+          <input id="image" type="file" class="form-control-file"  name="image">
         </div>
         <button type="submit" class="btn mt-3 btn-primary">Update ad</button>
       </form>
