@@ -21,6 +21,7 @@ class FaqCategoryController extends Controller
     public function index()
     {
         $categories = FaqCategory::with('questions')->get();
+
         return view('faq.index', compact('categories'));
     }
 
