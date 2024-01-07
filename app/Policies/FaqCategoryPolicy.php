@@ -13,7 +13,7 @@ class FaqCategoryPolicy
         return true; // Alle gebruikers kunnen alle categorieën bekijken
     }
 
-    public function view(User $user, FaqCategory $category)
+    public function view(User $user)
     {
         return true; // Alle gebruikers kunnen een specifieke categorie bekijken
     }
@@ -23,12 +23,12 @@ class FaqCategoryPolicy
         return $user->is_admin; // Alleen admins kunnen categorieën maken
     }
 
-    public function update(User $user, FaqCategory $category)
+    public function update(User $user)
     {
         return $user->is_admin; // Alleen admins kunnen categorieën bijwerken
     }
 
-    public function delete(User $user, FaqCategory $category)
+    public function delete(User $user)
     {
         return $user->is_admin; // Alleen admins kunnen categorieën verwijderen
     }

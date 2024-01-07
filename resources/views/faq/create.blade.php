@@ -1,3 +1,9 @@
+@extends('layouts.app')
+
+
+@section('content')
+
+
 <div class="container mt-5">
     <h2>Create New Question</h2>
 
@@ -5,13 +11,14 @@
         @csrf
 
         <div class="form-group">
-            <label for="category_id">Category:</label>
-            <select name="category_id" id="category_id" class="form-control" required>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
-        </div>
+    <label for="category_id">Category:</label>
+    <select name="category_id" id="category_id" class="form-control" required>
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @endforeach
+    </select>
+</div>
+
 
         <div class="form-group">
             <label for="question">Question:</label>
@@ -26,3 +33,4 @@
         <button type="submit" class="btn btn-primary">Create Question</button>
     </form>
 </div>
+@endsection

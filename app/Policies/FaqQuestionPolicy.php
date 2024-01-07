@@ -15,7 +15,7 @@ class FaqQuestionPolicy
         return true; // Alle gebruikers kunnen alle vragen bekijken
     }
 
-    public function view(User $user, FaqQuestion $question)
+    public function view(User $user)
     {
         return true; // Alle gebruikers kunnen een specifieke vraag bekijken
     }
@@ -25,12 +25,12 @@ class FaqQuestionPolicy
         return $user->is_admin; // Alleen admins kunnen vragen maken
     }
 
-    public function update(User $user, FaqQuestion $question)
+    public function update(User $user)
     {
         return $user->is_admin; // Alleen admins kunnen vragen bijwerken
     }
 
-    public function delete(User $user, FaqQuestion $question)
+    public function delete(User $user)
     {
         return $user->is_admin; // Alleen admins kunnen vragen verwijderen
     }

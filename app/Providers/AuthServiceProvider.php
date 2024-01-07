@@ -23,7 +23,7 @@ class AuthServiceProvider extends ServiceProvider
         User::class => UserPolicy::class,
         FaqCategory::class => FaqCategoryPolicy::class,
         FaqQuestion::class => FaqQuestionPolicy::class,
-
+     
     ];
 
 

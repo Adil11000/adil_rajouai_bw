@@ -48,10 +48,26 @@ Route::get('/my-cart', [App\Http\Controllers\CartController::class, 'showCart'])
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('faq-categories', \App\Http\Controllers\FaqCategoryController::class);
-    Route::resource('faq-questions', \App\Http\Controllers\FaqQuestionController::class);
+    // FAQ Questions
+    Route::get('faq-questions/create/{faq_category_id}', [\App\Http\Controllers\FaqQuestionController::class, 'create'])->name('faq-questions.create');
+    Route::get('faq-questions/{faq_question}', [\App\Http\Controllers\FaqQuestionController::class, 'show'])->name('faq-questions.show');
+    Route::get('faq-questions/{faq_question}/edit', [\App\Http\Controllers\FaqQuestionController::class, 'edit'])->name('faq-questions.edit');
+    Route::delete('faq-questions/{faq_question}', [\App\Http\Controllers\FaqQuestionController::class, 'destroy'])->name('faq-questions.destroy');
+    Route::resource('faq-questions', \App\Http\Controllers\FaqQuestionController::class)->except(['create', 'show', 'edit', 'destroy']);
+
+    // FAQ Categories
+    Route::get('faq-categories/create', [\App\Http\Controllers\FaqCategoryController::class, 'create'])->name('faq-categories.create');
+    Route::post('faq-categories', [\App\Http\Controllers\FaqCategoryController::class, 'store'])->name('faq-categories.store');
+    Route::get('faq-categories/{faq_category}', [\App\Http\Controllers\FaqCategoryController::class, 'show'])->name('faq-categories.show');
+    Route::get('faq-categories/{faq_category}/edit', [\App\Http\Controllers\FaqCategoryController::class, 'edit'])->name('faq-categories.edit');
+    Route::put('faq-categories/{faq_category}', [\App\Http\Controllers\FaqCategoryController::class, 'update'])->name('faq-categories.update');
+    Route::delete('faq-categories/{faq_category}', [\App\Http\Controllers\FaqCategoryController::class, 'destroy'])->name('faq-categories.destroy');
+    Route::resource('faq-categories', \App\Http\Controllers\FaqCategoryController::class)->except(['create', 'show', 'edit', 'update', 'destroy']);
+
+    // FAQ Index
     Route::get('faq', [\App\Http\Controllers\FaqCategoryController::class, 'index'])->name('faq.index');
 });
+
 
 
 // Returns the home page with all products
