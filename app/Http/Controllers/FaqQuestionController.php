@@ -57,8 +57,11 @@ class FaqQuestionController extends Controller
         if (Gate::denies('update', $faqQuestion)) {
             abort(403, 'Unauthorized action.');
         }
-        return view('faq.edit', compact('faqQuestion'));
+    
+        $categories = FaqCategory::all(); // Zorg ervoor dat je $categories correct ophaalt
+        return view('faq.edit', compact('faqQuestion', 'categories'));
     }
+    
 
     public function update(Request $request, FaqQuestion $faqQuestion)
     {

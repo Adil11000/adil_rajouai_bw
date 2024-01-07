@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="container mt-5">
         <h2>Edit Question</h2>
 
@@ -30,8 +29,9 @@
                 <textarea name="answer" id="answer" class="form-control" required>{{ $faqQuestion->answer }}</textarea>
             </div>
 
+            <!-- Voeg andere formuliervelden toe zoals nodig -->
+
             <button type="submit" class="btn btn-primary">Update Question</button>
         </form>
     </div>
-
 @endsection
