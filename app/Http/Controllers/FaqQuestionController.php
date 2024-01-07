@@ -19,30 +19,35 @@ class FaqQuestionController extends Controller
 
 public function index()
 {
-    $questions = FaqQuestion::all();
+    $questions = FaqQuestion::with('category')->get();
     return view('faq.index', compact('questions'));
 }
 
 
 
-    public function create()
+public function create()
 {
     $this->authorize('create', FaqQuestion::class);
-    return view('faq.create');
+    $categories = FaqCategory::all();
+    return view('faq.create', compact('categories'));
 }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'category_id' => 'required|exists:faq_categories,id',
-            'question' => 'required',
-            'answer' => 'required',
-        ]);
 
-        FaqQuestion::create($request->all());
+public function store(Request $request)
+{
+    $this->authorize('create', FaqQuestion::class);
 
-        return redirect()->route('faq.index')->with('success', 'Question created successfully.');
-    }
+    $request->validate([
+        'category_id' => 'required|exists:faq_categories,id',
+        'question' => 'required',
+        'answer' => 'required',
+    ]);
+
+    FaqQuestion::create($request->all());
+
+    return redirect()->route('faq.index')->with('success', 'Question created successfully.');
+}
+
 
     public function edit(FaqQuestion $faqQuestion)
 {

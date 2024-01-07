@@ -5,18 +5,18 @@
     <div class="container mt-5">
         <h2>Frequently Asked Questions</h2>
 
-        @foreach($categories as $category)
-            <div class="category">
-                <h3>{{ $category->name }}</h3>
+        @@foreach($categories as $category)
+    <div class="category">
+        <h3>{{ $category->name }}</h3>
 
-                @forelse($category->questions as $question)
-                    <div class="question">
-                        <h4>{{ $question->question }}</h4>
-                        <p>{{ $question->answer }}</p>
-                    </div>
-                @empty
-                    <p>No questions available for this category.</p>
-                @endforelse
+        @forelse($category->questions as $question)
+            <div class="question">
+                <h4>{{ $question->question }}</h4>
+                <p>{{ $question->answer }}</p>
+            </div>
+        @empty
+            <p>No questions available for this category.</p>
+        @endforelse
 
                 <!-- Toon de knoppen alleen als de gebruiker een admin is -->
                 @can('create', \App\Models\FaqQuestion::class)
@@ -36,5 +36,7 @@
                 @endcan
             </div>
         @endforeach
+        @dd($categories) <!-- Voeg deze regel toe voor debuggen -->
+
     </div>
 @endsection

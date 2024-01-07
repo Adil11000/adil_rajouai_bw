@@ -12,7 +12,8 @@ class FaqCategory extends Model
     protected $fillable = ['name'];
 
     public function questions()
-    {
-        return $this->hasMany(FaqQuestion::class);
-    }
+{
+    return $this->hasMany(FaqQuestion::class, 'category_id');
+}
+
 }

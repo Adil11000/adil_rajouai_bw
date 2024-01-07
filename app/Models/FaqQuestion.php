@@ -12,7 +12,7 @@ class FaqQuestion extends Model
     protected $fillable = ['faq_category_id', 'question', 'answer'];
 
     public function category()
-    {
-        return $this->belongsTo(FaqCategory::class, 'faq_category_id');
-    }
+{
+    return $this->belongsTo(FaqCategory::class, 'category_id');
+}
 }
