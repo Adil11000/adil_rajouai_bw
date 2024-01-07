@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\FaqCategory;
 use App\Models\FaqQuestion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+
 
 class FaqCategoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->authorizeResource(FaqCategory::class, 'faq-category');
+        $this->middleware('auth')->except('index');
     }
 
     public function index()
@@ -41,7 +42,11 @@ class FaqCategoryController extends Controller
 
     public function edit(FaqCategory $faqCategory)
     {
-        $this->authorize('update', $faqCategory);
+
+        if (Gate::denies('update', $faqCategory)) {
+            abort(403, 'Unauthorized action.');
+        }
+    
         return view('faq.edit_category', compact('faqCategory'));
     }
 

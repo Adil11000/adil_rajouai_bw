@@ -46,6 +46,8 @@ Route::get('/my-cart', [App\Http\Controllers\CartController::class, 'showCart'])
 
 
 
+Route::get('faq', [\App\Http\Controllers\FaqCategoryController::class, 'index'])->name('faq.index');
+
 
 Route::middleware(['auth'])->group(function () {
     // FAQ Questions
@@ -64,9 +66,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('faq-categories/{faq_category}', [\App\Http\Controllers\FaqCategoryController::class, 'destroy'])->name('faq-categories.destroy');
     Route::resource('faq-categories', \App\Http\Controllers\FaqCategoryController::class)->except(['create', 'show', 'edit', 'update', 'destroy']);
 
-    // FAQ Index
-    Route::get('faq', [\App\Http\Controllers\FaqCategoryController::class, 'index'])->name('faq.index');
-});
+    });
+
 
 
 

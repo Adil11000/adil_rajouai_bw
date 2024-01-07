@@ -10,26 +10,26 @@ class FaqCategoryPolicy
 {
     public function viewAny(User $user)
     {
-        return true; // Alle gebruikers kunnen alle categorieën bekijken
+        return true; 
     }
 
     public function view(User $user)
     {
-        return true; // Alle gebruikers kunnen een specifieke categorie bekijken
+        return true; 
     }
 
     public function create(User $user)
     {
-        return $user->is_admin; // Alleen admins kunnen categorieën maken
+        return $user->is_admin; 
     }
 
     public function update(User $user)
     {
-        return $user->is_admin; // Alleen admins kunnen categorieën bijwerken
+        return $user->is_admin; 
     }
 
     public function delete(User $user)
     {
-        return $user->is_admin; // Alleen admins kunnen categorieën verwijderen
+        return $user->is_admin; 
     }
 }
