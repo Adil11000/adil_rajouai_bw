@@ -10,10 +10,8 @@ class FaqCategoriesTableSeeder extends Seeder
 {
     public function run()
     {
-        // Verwijder bestaande gegevens
-        FaqCategory::truncate();
-
-        // Voeg dummygegevens toe
+        
+//eloquent gebruik
         FaqCategory::create(['name' => 'A) General Information']);
         FaqCategory::create(['name' => 'B) Job Listings and Applications']);
         FaqCategory::create(['name' => 'C) Account Management']);
